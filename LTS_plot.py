@@ -22,7 +22,7 @@ import pandas as pd
 import geopandas as gpd
 from matplotlib import pyplot as plt
 
-city = "Victoria"
+city = "Nuremberg"
 
 
 all_lts_df = pd.read_csv("data/all_lts_%s.csv" %city)
@@ -36,7 +36,7 @@ all_lts = gpd.GeoDataFrame(
 gdf_nodes = pd.read_csv("data/gdf_nodes_%s.csv" %city, index_col=0)
 
 # +
-# define lts colours for plotting
+# define lts colors for plotting
 conditions = [
     (all_lts['lts'] == 1),
     (all_lts['lts'] == 2),
