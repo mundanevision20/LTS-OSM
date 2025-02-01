@@ -167,6 +167,9 @@ def get_max_speed(
     # create a list of conditions
     # When multiple conditions are satisfied, the first one encountered in conditions is used
     conditions = [
+        (gdf_edges["maxspeed"] == "none"),
+        (gdf_edges["maxspeed"] == "walk"),
+        (gdf_edges["maxspeed"] == "signals"),
         (gdf_edges["maxspeed"] == "national"),
         (gdf_edges["maxspeed"].isna()) & (gdf_edges["highway"] == "motorway"),
         (gdf_edges["maxspeed"].isna()) & (gdf_edges["highway"] == "primary"),
@@ -175,7 +178,7 @@ def get_max_speed(
     ]
 
     # create a list of the values we want to assign for each condition
-    values = [national, motorway, primary, secondary, local]
+    values = [110, 5, 5, national, motorway, primary, secondary, local]
 
     # create a new column and use np.select to assign values to it using our lists as arguments
     gdf_edges["maxspeed_assumed"] = np.select(
